@@ -1,15 +1,15 @@
-package com.learn.verbs;
+package com.learn;
 
 
-import com.learn.repository.VerbsRepositoryImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.thymeleaf.spring6.SpringTemplateEngine;
+import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring6.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.UrlTemplateResolver;
 
 @Configuration
 public class AppConfiguration {
 
-//    @Bean
-//    public VerbsRepositoryImpl verbsRepositoryImpl(){
-//        return new VerbsRepositoryImpl();
-//    }
+
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset = "ISO-8859-1" />
+    <link href = "css/styles.css" rel = "stylesheet"/>
+    <title>Learn App - a Spring Boot Application</title>
+</head>
+
+<body>
+
+    <div th:if="${quizQuestion}">
+
+        <div th:if="${result}">
+            <p th:text="${result}"></p>
+            <a th:href="@{/quiz}">Next</a>
+        </div>
+
+        <h2 th:text="${quizQuestion.question}"></h2>
+        <form th:action="@{/quizSubmit}" method="post">
+            <ul>
+                <li th:each="answer : ${quizQuestion.answers}">
+                    <label>
+
+                        <input type="radio" th:name="selectedAnswer" th:value="${answer}"
+                               th:checked="${result} == ${answer}"
+                        />
+                        <span th:text="${answer}"></span>
+                    </label>
+                </li>
+            </ul>
+            <button type="submit">Submit</button>
+        </form>
+
+
+
+    </div>
+
+
+
+    <div th:insert="~{footer :: footer}">...</div>
+
+</body>
+</html>

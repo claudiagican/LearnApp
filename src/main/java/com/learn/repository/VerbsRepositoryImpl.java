@@ -28,7 +28,7 @@ public class VerbsRepositoryImpl implements IRepository{
     }
 
     @Override
-    public QAndAModel loadRandomQuestions(int questionsNumber) {
+    public QAndAModel loadRandomQuestions(int answersNumber) {
 
         HashMap<String, String> verbs = generateSomeVerbsList();
         QAndAModel result = new QAndAModel();
@@ -42,7 +42,7 @@ public class VerbsRepositoryImpl implements IRepository{
     }
 
     @Override
-    public QAndAModel loadFirstQuestions(int questionsNumber) {
+    public QAndAModel loadFirstQuestions(int answersNumber) {
         return null;
     }
 

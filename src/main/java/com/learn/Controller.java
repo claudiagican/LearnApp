@@ -5,6 +5,8 @@ import com.learn.repository.VerbsRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -12,12 +14,30 @@ public class Controller {
     @Autowired
     private VerbsRepositoryImpl verbsRepositoryImpl;
 
-    @GetMapping("/")
-    public String loadHomePage(Model model)
+    private QAndAModel currentQuestion;
+
+    @GetMapping("/quiz")
+    public String showQuizQuestion(Model model)
     {
-        QAndAModel question = verbsRepositoryImpl.loadRandomQuestions(3);
-        model.addAttribute("question", question);
-        return "index";
+        currentQuestion = verbsRepositoryImpl.loadRandomQuestions(3);
+        model.addAttribute("quizQuestion", currentQuestion);
+        model.addAttribute("result", "");
+        return "quiz";
     }
 
+    @PostMapping("/quizSubmit")
+    public String validateQuizQuestion(@RequestParam("selectedAnswer") String selectedAnswer, Model model)
+    {
+
+        boolean isCorrect = checkAnswer(currentQuestion, selectedAnswer);
+        String resultMessage = isCorrect ? "Correct!" : "Incorrect";
+
+        model.addAttribute("quizQuestion", currentQuestion);
+        model.addAttribute("result", "to sleep");
+        return "quiz";
+    }
+
+    private boolean checkAnswer(QAndAModel currentQuestion, String selectedAnswer) {
+        return true;
+    }
 }

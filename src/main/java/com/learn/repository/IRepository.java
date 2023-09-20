@@ -4,6 +4,6 @@ import com.learn.model.QAndAModel;
 
 public interface IRepository {
 
-    QAndAModel loadRandomQuestions(int questionsNumber);
-    QAndAModel loadFirstQuestions(int questionsNumber);
+    QAndAModel loadRandomQuestions(int answersNumber);
+    QAndAModel loadFirstQuestions(int answersNumber);
 }
