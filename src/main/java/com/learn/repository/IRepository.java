@@ -1,8 +1,11 @@
 package com.learn.repository;
 
-import com.learn.model.QuizQuestion;
+import com.learn.model.Question;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 public interface IRepository {
 
-    QuizQuestion loadRandomQuestion ();
+    List<Question> loadRandomQuestion ();
 }

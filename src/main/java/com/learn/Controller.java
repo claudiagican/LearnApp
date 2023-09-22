@@ -1,7 +1,7 @@
 package com.learn;
 
 import com.learn.model.QuizQuestion;
-import com.learn.repository.VerbsRepositoryImpl;
+import com.learn.repository.InMemoryRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class Controller {
 
     @Autowired
-    private VerbsRepositoryImpl verbsRepositoryImpl;
-
+    private Service service;
     private QuizQuestion quizQuestion;
 
     @GetMapping("/quiz")
     public String showQuizQuestion(Model model)
     {
-        quizQuestion = verbsRepositoryImpl.loadRandomQuestion();
+        quizQuestion = service.getNextQuestion();
         model.addAttribute("quizQuestion", quizQuestion);
         model.addAttribute("result", "");
         return "quiz";
@@ -29,15 +28,12 @@ public class Controller {
     public String validateQuizQuestion(@RequestParam("selectedAnswer") String selectedAnswer, Model model)
     {
 
-        boolean isCorrect = checkAnswer(quizQuestion, selectedAnswer);
+        boolean isCorrect = service.checkAnswer(quizQuestion.getQuestion(), selectedAnswer);
         String resultMessage = isCorrect ? "Correct!" : "Incorrect";
 
         model.addAttribute("quizQuestion", quizQuestion);
-        model.addAttribute("result", "to sleep");
+        model.addAttribute("result", resultMessage);
         return "quiz";
     }
 
-    private boolean checkAnswer(QuizQuestion currentQuestion, String selectedAnswer) {
-        return true;
-    }
 }

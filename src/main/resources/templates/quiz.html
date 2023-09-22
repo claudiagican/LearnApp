@@ -11,11 +11,6 @@
 
     <div th:if="${quizQuestion}">
 
-        <div th:if="${result}">
-            <p th:text="${result}"></p>
-            <a th:href="@{/quiz}">Next</a>
-        </div>
-
         <h2 th:text="${quizQuestion.question.content}"></h2>
         <form th:action="@{/quizSubmit}" method="post">
             <ul>
@@ -32,7 +27,10 @@
             <button type="submit">Submit</button>
         </form>
 
-
+        <div th:if="${result}">
+            <p th:text="${result}"></p>
+            <a th:href="@{/quiz}">Next</a>
+        </div>
 
     </div>
 
