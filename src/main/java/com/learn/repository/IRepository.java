@@ -1,9 +1,8 @@
 package com.learn.repository;
 
-import com.learn.model.QAndAModel;
+import com.learn.model.QuizQuestion;
 
 public interface IRepository {
 
-    QAndAModel loadRandomQuestions(int answersNumber);
-    QAndAModel loadFirstQuestions(int answersNumber);
+    QuizQuestion loadRandomQuestion ();
 }

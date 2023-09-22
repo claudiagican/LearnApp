@@ -16,10 +16,10 @@
             <a th:href="@{/quiz}">Next</a>
         </div>
 
-        <h2 th:text="${quizQuestion.question}"></h2>
+        <h2 th:text="${quizQuestion.question.content}"></h2>
         <form th:action="@{/quizSubmit}" method="post">
             <ul>
-                <li th:each="answer : ${quizQuestion.answers}">
+                <li th:each="answer : ${quizQuestion.possibleAnswers}">
                     <label>
 
                         <input type="radio" th:name="selectedAnswer" th:value="${answer}"

@@ -1,50 +1,43 @@
 package com.learn.repository;
 
-import com.learn.model.QAndAModel;
-import org.springframework.context.annotation.Bean;
+import com.learn.model.Question;
+import com.learn.model.QuizQuestion;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 @Component
 public class VerbsRepositoryImpl implements IRepository{
 
 
-    private HashMap<String, String> generateSomeVerbsList(){
-        HashMap<String, String> verbs = new HashMap<String, String>();
-        verbs.put("laufen", "to run");
-        verbs.put("essen", "to eat");
-        verbs.put("schlafen", "to sleep");
-        verbs.put("machen", "to make");
-        verbs.put("konnen", "to can");
-        verbs.put("gehen", "to go");
-        verbs.put("lesen", "to read");
-        verbs.put("kaufen", "to buy");
-        verbs.put("reisen", "to travel");
+    private List<Question> loadSomeVerbsList(){
 
-        return verbs;
+        List<Question> questions = new ArrayList<Question>();
+
+        questions.add(new Question("laufen", "to run"));
+        questions.add(new Question("laufen", "to operate"));
+        questions.add(new Question("essen", "to eat"));
+        questions.add(new Question("schlafen", "to sleep"));
+        questions.add(new Question("machen", "to make"));
+
+        return questions;
     }
 
     @Override
-    public QAndAModel loadRandomQuestions(int answersNumber) {
+    public QuizQuestion loadRandomQuestion() {
 
-        HashMap<String, String> verbs = generateSomeVerbsList();
-        QAndAModel result = new QAndAModel();
-        Random rand = new Random();
+        List<Question> questions = loadSomeVerbsList();
+        Collections.shuffle(questions, new Random());
 
-        result.setQuestion("lesen");
-        result.setAnswers(new String[]{"to sleep", "to read", "to buy"});
-        result.setCorrectAnswer("to read");
+        Question chosenQuestion = questions.get(0);
 
-        return result;
+        List<String> possibleAnswers = new ArrayList<String>();
+        possibleAnswers.add(chosenQuestion.getAnswer());
+        possibleAnswers.add(questions.get(1).getAnswer());
+        possibleAnswers.add(questions.get(2).getAnswer());
+        Collections.shuffle(possibleAnswers);
+
+        return new QuizQuestion(chosenQuestion, possibleAnswers);
     }
-
-    @Override
-    public QAndAModel loadFirstQuestions(int answersNumber) {
-        return null;
-    }
-
 
 }
