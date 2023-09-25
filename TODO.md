@@ -4,7 +4,7 @@
 
 ## Server side
 
-* Implement Service class
+* [DONE] Implement Service class
 * Implement microservices
 * Implement Spring security
 * 
@@ -18,8 +18,13 @@
 
 ## UI
 
-* CSS, Bootstrap
-* Second page after press button in the main page
+* [DONE] Use Thymeleaf
+* [DONE] Use Thymeleaf fragments (e.g. page title, footer, buttons replacing)
+* CSS 
+* [DONE] Add Bootstrap
+* Bootstrap more each page
+* [DONE] Second page after press button in the main page
+* Make button Submit disabled after pressing and Next enabled
 * [DONE] Validate correct answer remaining in the same page
 
 

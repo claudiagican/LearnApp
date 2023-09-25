@@ -5,38 +5,45 @@
     <meta charset = "ISO-8859-1" />
     <link href = "css/styles.css" rel = "stylesheet"/>
     <title>Learn App - a Spring Boot Application</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
 
-    <div th:if="${quizQuestion}">
+    <div th:insert="~{fragments :: page_title}">...</div>
+
+    <div th:if="${quizQuestion}" class="container">
 
         <h2 th:text="${quizQuestion.question.content}"></h2>
-        <form th:action="@{/quizSubmit}" method="post">
-            <ul>
+
+        <form th:action="@{/quiz}" method="post">
+            <ul style="list-style: none">
                 <li th:each="answer : ${quizQuestion.possibleAnswers}">
                     <label>
 
-                        <input type="radio" th:name="selectedAnswer" th:value="${answer}"
+                        <input type="radio" class="form-check-input" th:name="selectedAnswer" th:value="${answer}"
                                th:checked="${result} == ${answer}"
                         />
-                        <span th:text="${answer}"></span>
+                        <span class="form-check-label" th:text="${answer}"></span>
                     </label>
                 </li>
             </ul>
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
-        <div th:if="${result}">
-            <p th:text="${result}"></p>
-            <a th:href="@{/quiz}">Next</a>
-        </div>
+        <div th:insert="~{fragments :: next_question_button}">...</div>
 
     </div>
 
+    <div th:unless="${quizQuestion}" class="container">
+        <div th:insert="~{fragments :: back_to_start_button}">...</div>
+    </div>
 
-
-    <div th:insert="~{footer :: footer}">...</div>
+    <div th:insert="~{fragments :: footer}">...</div>
 
 </body>
 </html>

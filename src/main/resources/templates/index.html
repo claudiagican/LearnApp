@@ -9,13 +9,11 @@
 
 <body>
 
-    <p th:text="${question.question}"></p>
+    <div class="container">
+        <a th:href="@{/quiz}" class="btn btn-primary">Start German Verbs quiz</a>
+    </div>
 
-    <ul th:each="answer : ${question.answers}">
-        <button th:text="${answer}" />
-    </ul>
-
-    <div th:insert="~{footer :: footer}">...</div>
+    <div th:insert="~{fragments :: footer}">...</div>
 
 </body>
 </html>

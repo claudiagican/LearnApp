@@ -50,4 +50,12 @@ public class Service {
         }
         return false;
     }
+
+    public int getCurrentQuestionIndex(){
+        return currentQuestionIndex;
+    }
+
+    public void resetCurrentQuestionIndex() {
+        currentQuestionIndex = -1;
+    }
 }
