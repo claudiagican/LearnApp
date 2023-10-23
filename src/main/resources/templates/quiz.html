@@ -3,44 +3,44 @@
 
 <head>
     <meta charset = "ISO-8859-1" />
-    <link href = "css/styles.css" rel = "stylesheet"/>
+    <link th:href="@{/style/style.css}" rel="stylesheet" />
     <title>Learn App - a Spring Boot Application</title>
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/styles.css">
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+
 </head>
 
 <body>
 
-    <div th:insert="~{fragments :: page_title}">...</div>
+    <div th:if="${quizQuestion}" class="container justify-content-center align-items-center">
 
-    <div th:if="${quizQuestion}" class="container">
+        <div th:insert="~{fragments :: page_title}">...</div>
 
-        <h2 th:text="${quizQuestion.question.content}"></h2>
+        <div class="container question">
+            <p class="text-muted">Question no. <span th:text="${currentNumber}"></span></p>
+            <h3 th:text="${quizQuestion.question.content}"></h3>
 
-        <form th:action="@{/quiz}" method="post">
-            <ul style="list-style: none">
-                <li th:each="answer : ${quizQuestion.possibleAnswers}">
-                    <label>
+            <form th:action="@{/quiz}" method="post">
+                <ul style="list-style: none">
+                    <li th:each="answer : ${quizQuestion.possibleAnswers}">
 
-                        <input type="radio" class="form-check-input" th:name="selectedAnswer" th:value="${answer}"
-                               th:checked="${result} == ${answer}"
+                        <input type="radio" th:id="${answer}"  name="answearOption"  th:value="${answer}"
+                               th:checked="${initialAnswer}==${answer} ? 'true' : 'false'"
                         />
-                        <span class="form-check-label" th:text="${answer}"></span>
-                    </label>
-                </li>
-            </ul>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+                        <label th:for="${answer}" th:text="${answer}" th:classappend="${result}==${answer} ? ' validAnswer' : ''"></label>
+                    </li>
+                </ul>
 
-        <div th:insert="~{fragments :: next_question_button}">...</div>
-
+                <button type="submit" class="btn btn-primary" th:classappend="${#strings.isEmpty(result)} ? '' : 'disabled'">Check</button>
+                <a th:href="@{/quiz}" class="btn btn-primary" th:classappend="${#strings.isEmpty(result)} ? 'disabled' : ''">Next</a>
+                <a th:href="@{/index}" class="btn btn-secondary">Exit</a>
+            </form>
+        </div>
     </div>
 
-    <div th:unless="${quizQuestion}" class="container">
-        <div th:insert="~{fragments :: back_to_start_button}">...</div>
+    <div th:unless="${quizQuestion}" class="container justify-content-center align-items-center">
+        <p>Done! Your score is <span th:text="${result}"></span> / <span th:text="${currentNumber}"></span></p>
+        <a th:href="@{/index}" class="btn btn-secondary">Return to the main page</a>
     </div>
 
     <div th:insert="~{fragments :: footer}">...</div>

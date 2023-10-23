@@ -6,25 +6,20 @@
 <body>
 
 
-<div th:fragment="page_title" class="container">
-    <div th:if="${quizTitle}" class="container">
+<div th:fragment="page_title">
+    <div th:if="${quizTitle}">
         <h1 th:text="${quizTitle}" class="h1"></h1>
-        <p>Question no. <span th:text="${currentNumber}"></span></p>
+    </div>
+    <div th:unless="${quizTitle}">
+        <h1 class="h1">Welcome to your learning app</h1>
+        <p>Create a new test? </p>
+        <h2 class="h2">Available tests</h2>
     </div>
 </div>
 
-<div th:fragment="next_question_button" th:if="${result}" class="container">
-    <p th:text="${result}"></p>
-    <a th:href="@{/quiz}" class="btn btn-primary">Next</a>
-</div>
 
-<div th:fragment="back_to_start_button" th:if="${result}" class="container">
-    <p>Done!</p>
-    <a th:href="@{/index}" class="btn btn-primary">Back to main page</a>
-</div>
-
-<div th:fragment="footer" class="container">
-    <br>
+<div th:fragment="footer" class="container justify-content-center align-items-center">
+    <hr />
     <p>&copy; 2023 CGI</p>
 </div>
 

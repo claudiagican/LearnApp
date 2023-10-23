@@ -1,0 +1,19 @@
+.container{
+    margin-top: 30px;
+}
+
+.question{
+    width: 30%;
+    background-color: seashell;
+    padding: 30px;
+}
+
+.validAnswer{
+    color: limegreen;
+}
+
+li{
+    padding: 10px;
+    font-size: x-large;
+}
+

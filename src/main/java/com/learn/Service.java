@@ -18,12 +18,15 @@ public class Service {
     private InMemoryRepositoryImpl repository;
     private int currentQuestionIndex;
 
+    private int score;
+
     @Autowired
     public Service(IRepository repository) {
         currentQuestionIndex = -1;
     }
 
     public QuizQuestion getNextQuestion() {
+
         currentQuestionIndex++;
 
         if (currentQuestionIndex < 5) {
@@ -44,11 +47,12 @@ public class Service {
         return null;
     }
 
-    public boolean checkAnswer(Question question, String selectedAnswer) {
+    public void checkAnswer(Question question, String selectedAnswer) {
         if (question != null) {
-            return question.getAnswer().equalsIgnoreCase(selectedAnswer);
+            if (question.getAnswer().equalsIgnoreCase(selectedAnswer)) {
+                score++;
+            }
         }
-        return false;
     }
 
     public int getCurrentQuestionIndex(){
@@ -57,5 +61,13 @@ public class Service {
 
     public void resetCurrentQuestionIndex() {
         currentQuestionIndex = -1;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
+    public void resetScore(){
+        score = 0;
     }
 }

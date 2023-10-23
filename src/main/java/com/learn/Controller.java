@@ -19,6 +19,7 @@ public class Controller {
     public String showMainPage(Model model)
     {
         service.resetCurrentQuestionIndex();
+        service.resetScore();
         return "index";
     }
 
@@ -26,24 +27,33 @@ public class Controller {
     public String showQuizQuestion(Model model)
     {
         quizQuestion = service.getNextQuestion();
-        model.addAttribute("quizQuestion", quizQuestion);
-        model.addAttribute("result", "");
-        model.addAttribute("quizTitle", "German Verbs");
-        model.addAttribute("currentNumber", service.getCurrentQuestionIndex());
+
+        if(quizQuestion != null) {
+
+            model.addAttribute("quizQuestion", quizQuestion);
+            model.addAttribute("result", "");
+            model.addAttribute("quizTitle", "German Verbs");
+            model.addAttribute("currentNumber", service.getCurrentQuestionIndex() + 1);
+
+        } else{
+            model.addAttribute("result", service.getScore());
+            model.addAttribute("currentNumber", service.getCurrentQuestionIndex());
+        }
         return "quiz";
     }
 
     @PostMapping("/quiz")
-    public String validateQuizQuestion(@RequestParam("selectedAnswer") String selectedAnswer, Model model)
+    public String validateQuizQuestion(@RequestParam("answearOption") String selectedAnswer, Model model)
     {
         model.addAttribute("quizTitle", "German Verbs");
-        model.addAttribute("currentNumber", service.getCurrentQuestionIndex());
+        model.addAttribute("currentNumber", service.getCurrentQuestionIndex() + 1);
 
-        boolean isCorrect = service.checkAnswer(quizQuestion.getQuestion(), selectedAnswer);
-        String resultMessage = isCorrect ? "Correct!" : "Incorrect";
+        service.checkAnswer(quizQuestion.getQuestion(), selectedAnswer);
+        String result = quizQuestion.getQuestion().getAnswer();
 
         model.addAttribute("quizQuestion", quizQuestion);
-        model.addAttribute("result", resultMessage);
+        model.addAttribute("initialAnswer", selectedAnswer);
+        model.addAttribute("result", result);
         return "quiz";
     }
 
