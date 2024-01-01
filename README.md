@@ -1,11 +1,23 @@
 A Spring Boot app with Gradle and Thymeleaf that generates a random quiz starting from a dictionary repository (question - answer).  
 
-![main page](learnapp-index.jpg)
+Landing page with all the tests found in the repository:
 
-![quiz valid](learnapp-quiz-valid.jpg)
+<img src="learnapp-index.jpg" alt="landing page" width="300" height="auto">
 
-![quiz invalid](learnapp-quiz-invalid.jpg)
+Quiz page /quiz/{quizName} displays random questions generated on the server side. 
+Pressing Check, the validation is made on the server and the correct option with be highlighted with green.
 
-![quiz option](learnapp-quiz-option.jpg)
+<img src="learnapp-quiz-valid.jpg" alt="valid option" width="300" height="auto">
 
-![quiz end](learnapp-end.jpg)
+<img src="learnapp-quiz-invalid.jpg" alt="invalid option" width="300" height="auto">
+
+Without pressing Check, the Next button is disabled:
+
+<img src="learnapp-quiz-option.jpg" alt="before check" width="300" height="auto">
+
+Final page with the score:
+
+<img src="learnapp-end.jpg" alt="end" width="300" height="auto">
+
+The header and the footer of the pages are defined as Thymeleaf fragments and included in the pages index.html or quiz.html.
+
