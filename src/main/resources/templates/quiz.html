@@ -20,11 +20,11 @@
             <p class="text-muted">Question no. <span th:text="${currentNumber}"></span></p>
             <h3 th:text="${quizQuestion.question.content}"></h3>
 
-            <form th:action="@{/quiz}" method="post">
+            <form th:action="@{/quiz/} + ${quizName}" method="post">
                 <ul style="list-style: none">
                     <li th:each="answer : ${quizQuestion.possibleAnswers}">
 
-                        <input type="radio" th:id="${answer}"  name="answearOption"  th:value="${answer}"
+                        <input type="radio" th:id="${answer}"  name="answerOption"  th:value="${answer}"
                                th:checked="${initialAnswer}==${answer} ? 'true' : 'false'"
                         />
                         <label th:for="${answer}" th:text="${answer}" th:classappend="${result}==${answer} ? ' validAnswer' : ''"></label>
@@ -32,7 +32,7 @@
                 </ul>
 
                 <button type="submit" class="btn btn-primary" th:classappend="${#strings.isEmpty(result)} ? '' : 'disabled'">Check</button>
-                <a th:href="@{/quiz}" class="btn btn-primary" th:classappend="${#strings.isEmpty(result)} ? 'disabled' : ''">Next</a>
+                <a th:href="@{/quiz/} + ${quizName}" class="btn btn-primary" th:classappend="${#strings.isEmpty(result)} ? 'disabled' : ''">Next</a>
                 <a th:href="@{/index}" class="btn btn-secondary">Exit</a>
             </form>
         </div>

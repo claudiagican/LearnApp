@@ -15,9 +15,11 @@
 
         <div th:insert="~{fragments :: page_title}">...</div>
 
-        <div>
-            <a th:href="@{/quiz}" class="btn btn-primary">German Verbs</a>
-        </div>
+        <ul style="list-style-type: none; padding: 0; margin: 0">
+            <li th:each="quizName : ${availableQuizzes}">
+                <a th:href="@{/quiz/} + ${quizName}" class="btn btn-primary" th:text="${quizName}">aaa</a>
+            </li>
+        </ul>
     </div>
 
     <div th:insert="~{fragments :: footer}">...</div>
