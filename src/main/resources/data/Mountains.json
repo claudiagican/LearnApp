@@ -1,0 +1,37 @@
+{
+    "name": "Mountains and countries",
+    "questions": [
+        {
+            "content": "Everest",
+            "answer": "Nepal"
+        },
+        {
+            "content": "Kilimanjaro",
+            "answer": "Tazmania"
+        },
+        {
+            "content": "Matterhorn",
+            "answer": "Switzerland"
+        },
+        {
+            "content": "Mont Blanc",
+            "answer": "France"
+        },
+        {
+            "content": "Acongagua",
+            "answer": "Argentina"
+        },
+        {
+            "content": "Mount Etna",
+            "answer": "Italy"
+        },
+        {
+            "content": "Denali",
+            "answer": "Alaska"
+        },
+        {
+            "content": "Creston Peak",
+            "answer": "USA"
+        }
+    ]
+}

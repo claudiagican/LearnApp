@@ -1,0 +1,53 @@
+{
+    "name": "GermanVerbs",
+    "questions": [
+        {
+            "content": "lesen",
+            "answer": "to read"
+        },
+        {
+            "content": "essen",
+            "answer": "to eat"
+        },
+        {
+            "content": "laufen",
+            "answer": "to run"
+        },
+        {
+            "content": "wandern",
+            "answer": "to hike"
+        },
+        {
+            "content": "gehen",
+            "answer": "to go"
+        },
+        {
+            "content": "machen",
+            "answer": "to make"
+        },
+        {
+            "content": "schlafen",
+            "answer": "to sleep"
+        },
+        {
+            "content": "reden",
+            "answer": "to speak"
+        },
+        {
+            "content": "fliegen",
+            "answer": "to fly"
+        },
+        {
+            "content": "kommen",
+            "answer": "to come"
+        },
+        {
+            "content": "bekommen",
+            "answer": "to receive"
+        },
+        {
+            "content": "ankommen",
+            "answer": "to arrive"
+        }
+    ]
+}
